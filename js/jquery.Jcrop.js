@@ -254,6 +254,7 @@
     function newTracker() //{{{
     {
       var trk = $('<div></div>').addClass(cssClass('tracker'));
+      
       if ($.browser.msie) {
         trk.css({
           opacity: 0,
@@ -1091,11 +1092,21 @@
         zIndex: 360
       });
 
+      if(options.ellipse) {
+        var $trkSvg = $('<svg style="position: absolute; width: 100%; height: 100%"><ellipse cx="50%" cy="50%" rx="50%" ry="50%" fill="rgba(55, 55, 55, 0)" stroke="rgba(255,255,255,.75)" style="stroke-width: 2; stroke-dasharray: 4 4"><animate attributeName="stroke-dashoffset" attributeType="XML" calcMode="linear" from="0" to="-16" dur="1.2s" repeatCount="indefinite"></animate></ellipse></svg>');
+        $track.append($trkSvg);
+      }
+      
       if (Touch.support) {
         $track.bind('touchstart.jcrop', Touch.createDragger('move'));
       }
 
       $img_holder.append($track);
+      
+      if(options.ellipse) {
+        $img_holder.addClass(cssClass('ellipse'))
+      }
+      
       disableHandles();
 
       return {
@@ -1670,6 +1681,7 @@
     dragEdges: true,
     fixedSupport: true,
     touchSupport: null,
+    ellipse: false,
 
     shade: null,
 

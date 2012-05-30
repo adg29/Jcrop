@@ -21,6 +21,12 @@
 .jcrop-vline.right{right:0;}
 .jcrop-hline.bottom{bottom:0;}
 
+/* Webkit (Chrome tested) ellipse support */
+.jcrop-ellipse {
+    -webkit-mask-image: url(ellipse.svg);
+}
+
+
 /* Handle style - size is set by Jcrop handleSize option (currently) */
 .jcrop-handle{background-color:#333;border:1px #eee solid;font-size:1px;}
 
